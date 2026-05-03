@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { api } from '../services/api';
+import { api, normalizeUser } from '../services/api';
 
 const useAuthStore = create((set, get) => ({
   user: null,
@@ -8,10 +8,10 @@ const useAuthStore = create((set, get) => ({
 
   setAuth: (token, user) => {
     localStorage.setItem('wc_token', token);
-    set({ token, user, loading: false });
+    set({ token, user: normalizeUser(user), loading: false });
   },
 
-  setUser: (user) => set({ user }),
+  setUser: (user) => set({ user: normalizeUser(user) }),
 
   logout: () => {
     localStorage.removeItem('wc_token');
@@ -23,7 +23,7 @@ const useAuthStore = create((set, get) => ({
     if (!token) { set({ loading: false }); return; }
     try {
       const data = await api.me();
-      set({ user: data.user, loading: false });
+      set({ user: normalizeUser(data.user), loading: false });
     } catch {
       localStorage.removeItem('wc_token');
       set({ user: null, token: null, loading: false });
