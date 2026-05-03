@@ -1,0 +1,43 @@
+.canvas {
+  width: 100%; aspect-ratio: 4/5; border-radius: var(--radius);
+  position: relative; overflow: hidden; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.circle1 { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); top: -40px; right: -40px; }
+.circle2 { position: absolute; width: 140px; height: 140px; border-radius: 50%; background: rgba(255, 255, 255, 0.03); bottom: 60px; left: -30px; }
+.emojiWrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%); }
+.emoji { font-size: 5rem; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25)); }
+
+.overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 44px 16px 22px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.avatarRing {
+  width: 62px; height: 62px; border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+.avatarImg { width: 100%; height: 100%; object-fit: cover; }
+.initial { color: #fff; font-size: 1.4rem; font-weight: 600; }
+.name {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+.wish {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.45;
+  font-weight: 300;
+}
