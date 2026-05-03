@@ -55,7 +55,8 @@ export default function Home() {
             <button className={s.premBadge} onClick={() => setShowPremium(true)}>⭐ Go Premium</button>
           )}
           {user?.isPremium && <span className={s.premTag}>⭐ Premium</span>}
-          <div className={s.avatar} title="Click to logout" onClick={handleLogout}>
+          <button className={s.logoutBtn} onClick={handleLogout}>Logout</button>
+          <div className={s.avatar} title="Profile">
             {avatarSrc ? <img src={avatarSrc} alt="av" onError={() => setAvatarError(true)} /> : initial}
           </div>
         </div>
