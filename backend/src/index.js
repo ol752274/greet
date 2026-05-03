@@ -18,6 +18,14 @@ function normalizeOrigin(origin) {
   return origin.replace(/\/+$/, '').trim().toLowerCase();
 }
 
+function getHostname(origin) {
+  try {
+    return new URL(origin).hostname.toLowerCase();
+  } catch {
+    return '';
+  }
+}
+
 const allowedOrigins = (process.env.CLIENT_URL || '')
   .split(',')
   .map((origin) => normalizeOrigin(origin))
@@ -29,6 +37,12 @@ app.use(cors({
     if (!origin) return cb(null, true);
     const normalizedOrigin = normalizeOrigin(origin);
     if (!allowedOrigins.length || allowedOrigins.includes(normalizedOrigin)) return cb(null, true);
+
+    // Allow Vercel preview domains when main Vercel domain is configured
+    const requestHost = getHostname(normalizedOrigin);
+    const hasVercelInAllowList = allowedOrigins.some((o) => getHostname(o).endsWith('.vercel.app'));
+    if (hasVercelInAllowList && requestHost.endsWith('.vercel.app')) return cb(null, true);
+
     return cb(new Error('Not allowed by CORS'));
   },
   credentials: true,
