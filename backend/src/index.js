@@ -14,16 +14,21 @@ const app = express();
 connectDB();
 
 // Middleware
+function normalizeOrigin(origin) {
+  return origin.replace(/\/+$/, '').trim().toLowerCase();
+}
+
 const allowedOrigins = (process.env.CLIENT_URL || '')
   .split(',')
-  .map((origin) => origin.trim())
+  .map((origin) => normalizeOrigin(origin))
   .filter(Boolean);
 
 app.use(cors({
   origin: (origin, cb) => {
     // Allow server-to-server tools and non-browser requests
     if (!origin) return cb(null, true);
-    if (!allowedOrigins.length || allowedOrigins.includes(origin)) return cb(null, true);
+    const normalizedOrigin = normalizeOrigin(origin);
+    if (!allowedOrigins.length || allowedOrigins.includes(normalizedOrigin)) return cb(null, true);
     return cb(new Error('Not allowed by CORS'));
   },
   credentials: true,
