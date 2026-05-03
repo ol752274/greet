@@ -1,4 +1,4 @@
-# ✨ WishCraft — Custom Greetings & Wishes App
+# ✨ Greet — Custom Greetings & Wishes App
 
 Full-stack app built with **React + Node.js + MongoDB**.
 
@@ -37,16 +37,7 @@ JWT_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
 ```
 
-## 📡 API Endpoints
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| POST | /api/auth/register | ✗ | Register with email+password |
-| POST | /api/auth/login | ✗ | Login |
-| POST | /api/auth/guest | ✗ | Guest session |
-| GET | /api/auth/me | ✓ | Get current user |
-| PUT | /api/user/profile | ✓ | Update name + avatar |
-| POST | /api/user/subscribe | ✓ | Activate premium (mock) |
-| GET | /api/templates | ✓ | Get templates (filtered by category) |
+
 
 ## 🖼 Image Overlay Logic
 Templates use CSS absolute positioning with 3 layers: gradient BG → emoji → user photo + name overlay. `html2canvas` flattens all layers to a 2× HD PNG for export and sharing.
