@@ -1,6 +1,16 @@
 const RAW_BASE = (import.meta.env.VITE_API_BASE_URL || '/api').trim();
 const BASE = RAW_BASE.replace(/\/+$/, '');
-const API_ORIGIN = BASE.startsWith('http') ? new URL(BASE).origin : '';
+
+function getApiOrigin(base) {
+  if (!base.startsWith('http://') && !base.startsWith('https://')) return '';
+  try {
+    return new URL(base).origin;
+  } catch {
+    return '';
+  }
+}
+
+const API_ORIGIN = getApiOrigin(BASE);
 
 function getToken() {
   return localStorage.getItem('wc_token');
