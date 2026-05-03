@@ -1,4 +1,4 @@
-# ✨ WishCraft — Custom Greetings & Wishes App
+# ✨ Greet — Custom Greetings & Wishes App
 
 Full-stack app built with **React + Node.js + MongoDB**.
 
